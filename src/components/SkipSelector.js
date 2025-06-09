@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
-import SkipCard from './components/SkipCard';
-import { skips } from './mockData/skips';
+import React, { useState, useEffect } from 'react';
+import SkipCard from './SkipCard';
 
-function App() {
+const SkipSelector = () => {
+  const [skips, setSkips] = useState([]);
   const [selectedSkip, setSelectedSkip] = useState(null);
+
+  useEffect(() => {
+    fetch('/mockData/skips.js')
+      .then((res) => res.json())
+      .then((data) => setSkips(data.skips))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="bg-black min-h-screen text-white py-10 px-4">
       <h1 className="text-3xl font-bold text-center mb-2">Choose Your Skip Size</h1>
-      <p className="text-center mb-8 text-gray-400">Select the skip size that best suits your needs</p>
-      <p className="text-center mb-4 text-gray-300 text-lg">All skips come with a 14-day hire period</p>
+      <p className="text-center mb-8 text-gray-400">
+        Select the skip size that best suits your needs
+      </p>
 
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {skips.map((skip) => (
           <SkipCard
             key={skip.id}
             skip={skip}
             isSelected={selectedSkip?.id === skip.id}
-            onSelect={() => setSelectedSkip(skip)}
+            onSelect={setSelectedSkip}
           />
         ))}
       </div>
@@ -35,6 +42,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
-export default App;
+export default SkipSelector;
