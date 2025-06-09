@@ -13,8 +13,8 @@ A sleek and responsive skip selection interface built with **React** and **Tailw
 
 ## 📸 Preview
 
-![Preview Screenshot](./assets/skip1.jpg)
-![Preview Screenshot](./assets/skip2.jpg)
+![Preview Screenshot](./assets/skip1.JPG)
+![Preview Screenshot](./assets/skip2.JPG)
 
 ## 🧰 Tech Stack
 
